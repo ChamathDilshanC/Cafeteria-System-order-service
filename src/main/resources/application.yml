@@ -2,8 +2,17 @@ spring:
   application:
     name: order-service # Must match the filename in config-server/config/
   config:
-    import: "configserver:${CONFIG_SERVER_URI:http://localhost:9000}"
+    import: "configserver:${CONFIG_SERVER_URI:http://config.platform:9000}"
   cloud:
     config:
       fail-fast: true
+
+---
+# Development Profile - uses localhost
+spring:
+  config:
+    activate:
+      on-profile: dev
+  config:
+    import: "configserver:${CONFIG_SERVER_URI:http://localhost:9000}"
 
