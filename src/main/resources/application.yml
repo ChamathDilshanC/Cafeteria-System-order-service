@@ -6,13 +6,3 @@ spring:
   cloud:
     config:
       fail-fast: true
-
----
-# Development Profile - uses localhost
-spring:
-  config:
-    activate:
-      on-profile: dev
-  config:
-    import: "configserver:${CONFIG_SERVER_URI:http://localhost:9000}"
-
