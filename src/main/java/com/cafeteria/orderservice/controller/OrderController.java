@@ -57,12 +57,7 @@ public class OrderController {
     }
 
     @PutMapping("/{id}/verify-payment")
-    public ResponseEntity<OrderResponse> verifyPayment(
-            @RequestHeader("Authorization") String auth,
-            @PathVariable Long id) {
-        if (!jwtDecoder.hasRole(auth, "STAFF") && !jwtDecoder.hasRole(auth, "ADMIN")) {
-            return ResponseEntity.status(403).build();
-        }
+    public ResponseEntity<OrderResponse> verifyPayment(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.verifyPayment(id));
     }
 
@@ -74,7 +69,9 @@ public class OrderController {
         return ResponseEntity.ok(orderService.cancelOrder(id, userId));
     }
 
-    /** Internal endpoint — called by kitchen-service via Feign to sync order status. */
+    /**
+     * Internal endpoint — called by kitchen-service via Feign to sync order status.
+     */
     @PutMapping("/{id}/internal-status")
     public ResponseEntity<Void> updateOrderStatus(
             @PathVariable Long id,
