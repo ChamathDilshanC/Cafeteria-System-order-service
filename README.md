@@ -46,7 +46,7 @@ The Order Service manages the complete order lifecycle in the Cafeteria Manageme
 | **Database Name**       | `cafeteria_orders`         |
 | **Feign Clients**       | user-service, menu-service |
 | **Eureka Registration** | Yes                        |
-| **Config Server**       | `http://localhost:8888`    |
+| **Config Server**       | `http://localhost:9000`    |
 
 ## 💾 Database Schema
 
@@ -138,7 +138,7 @@ CREATE TABLE order_items (
 - Port 8083 available
 - User Service running on port 8081
 - Menu Service running on port 8082
-- Config Server running on port 8888
+- Config Server running on port 9000
 - Service Registry running on port 8761
 
 ### Database Setup
@@ -176,7 +176,7 @@ spring:
   application:
     name: order-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://localhost:9000
 
 eureka:
   client:
@@ -646,7 +646,7 @@ curl http://localhost:8080/api/users/1 -H "Authorization: Bearer $TOKEN"
 ### Service Discovery
 
 - **Registers with**: Eureka Service Registry (8761)
-- **Fetches config from**: Config Server (8888)
+- **Fetches config from**: Config Server (9000)
 - **Discovers**: user-service, menu-service via Eureka
 
 ## 📄 License
