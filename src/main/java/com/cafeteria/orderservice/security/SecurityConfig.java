@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // Permit all order endpoints – no role enforcement at service level;
                         // role-based checks are done in the controller via JwtDecoder.
-                        .requestMatchers("/api/orders/**", "/orders/**", "/actuator/**").permitAll()
+                        .requestMatchers("/api/orders/**", "/orders/**", "/actuator/**", "/error").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
